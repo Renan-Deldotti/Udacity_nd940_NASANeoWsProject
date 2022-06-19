@@ -1,9 +1,12 @@
-# Purpose of this Folder
+# Purpose of this project:
 
-This folder should contain the scaffolded project files to get a student started on their project. This repo will be added to the Classroom for students to use, so please do not have any solutions in this folder.
+Udacity_nd940_NASANeoWsProject was made to complete the part 2 of Udacity's nd940 Nanodegree program.
+The app contains two screens, one showing all the asteroids and the other one showing details about a specific asteroid.
 
-## Note: Android Kotlin Gradle Update
-Use the updated Gradle version in the `~/gradle/wrapper/gradle-wrapper.properties` file:
+
+
+## Notes:
+This app requires a constant called "API_KEY", which was removed from the project, in order to get it access the [NASA api](https://api.nasa.gov/) and then replace the API_KEY inside Constants.kt:
 ```
-distributionUrl = https\://services.gradle.org/distributions/gradle-6.1.1-all.zip
+const val API_KEY = <API KEY>
 ```
