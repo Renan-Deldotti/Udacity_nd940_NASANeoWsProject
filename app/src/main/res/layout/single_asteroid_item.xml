@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="asteroid"
             type="com.udacity.asteroidradar.Asteroid" />
@@ -23,7 +24,8 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
-            android:textColor="@android:color/white"
+            android:text="@{asteroid.codename}"
+            android:textColor="@color/default_text_color"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/single_asteroid_status"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +38,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
-            android:textColor="@android:color/white"
+            android:text="@{asteroid.closeApproachDate}"
+            android:textColor="@color/text_grey"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -47,6 +50,7 @@
 
         <ImageView
             android:id="@+id/single_asteroid_status"
+            statusIcon="@{asteroid.potentiallyHazardous}"
             android:layout_width="0dp"
             android:layout_height="24dp"
             android:layout_marginHorizontal="16dp"
