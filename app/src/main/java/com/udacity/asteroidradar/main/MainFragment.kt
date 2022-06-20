@@ -2,6 +2,7 @@ package com.udacity.asteroidradar.main
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
@@ -19,6 +20,10 @@ class MainFragment : Fragment() {
                               savedInstanceState: Bundle?): View {
         val binding = FragmentMainBinding.inflate(inflater)
         binding.lifecycleOwner = this
+
+        binding.asteroidRecycler.adapter = AsteroidsListAdapter(AsteroidsListAdapter.AsteroidsItemListener {
+            Toast.makeText(context, "Test: ${it.id}", Toast.LENGTH_SHORT).show()
+        })
 
         binding.viewModel = viewModel
 
