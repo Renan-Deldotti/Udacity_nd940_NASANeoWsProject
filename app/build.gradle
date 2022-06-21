@@ -10,7 +10,7 @@ android {
     buildToolsVersion '30.0.3'
     defaultConfig {
         applicationId "com.udacity.asteroidradar"
-        minSdkVersion 21
+        minSdkVersion 26
         targetSdkVersion 32
         versionCode 1
         versionName "1.0"
@@ -34,9 +34,6 @@ android {
         jvmTarget = '1.8'
     }
     namespace 'com.udacity.asteroidradar'
-//    kotlinOptions {
-//        jvmTarget = JavaVersion.VERSION_1_8.toString()
-//    }
 }
 
 dependencies {
@@ -68,10 +65,12 @@ dependencies {
 
     implementation 'com.squareup.picasso:picasso:2.5.2'
 
+    implementation 'androidx.room:room-ktx:2.4.2'
     implementation "androidx.room:room-runtime:2.4.2"
     kapt "androidx.room:room-compiler:2.4.2"
 
     implementation "android.arch.work:work-runtime-ktx:1.0.1"
+    implementation 'androidx.work:work-runtime-ktx:2.7.1'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
