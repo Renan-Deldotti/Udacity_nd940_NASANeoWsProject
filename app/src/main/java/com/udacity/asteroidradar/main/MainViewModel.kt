@@ -3,9 +3,7 @@ package com.udacity.asteroidradar.main
 import android.app.Application
 import android.util.Log
 import android.widget.Toast
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.PictureOfDay
 import com.udacity.asteroidradar.R
@@ -30,7 +28,19 @@ class MainViewModel(application: Application) : ViewModel() {
         }
     }
 
-    val asteroids: LiveData<List<Asteroid>> = repository.allAsteroidsFromWeek
-
     val todayImage: LiveData<PictureOfDay> = repository.todayImage
+
+    enum class AsteroidFilters {TODAY_ASTEROIDS, WEEK_ASTEROIDS, SAVED_ASTEROIDS}
+    private val currentFilter = MutableLiveData(AsteroidFilters.SAVED_ASTEROIDS)
+    val asteroids = Transformations.switchMap(currentFilter) { filter ->
+        when(filter) {
+            AsteroidFilters.TODAY_ASTEROIDS -> repository.allAsteroidsFromToday
+            AsteroidFilters.WEEK_ASTEROIDS -> repository.allAsteroidsFromWeek
+            else -> repository.allAsteroidsSorted
+        }
+    }
+
+    fun filterAsteroids(asteroidFilters: AsteroidFilters) {
+        currentFilter.value = asteroidFilters
+    }
 }

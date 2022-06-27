@@ -31,16 +31,8 @@ class MainFragment : Fragment() {
         binding.viewModel = viewModel
 
         asteroidsListAdapter = AsteroidsListAdapter(AsteroidsListAdapter.AsteroidsItemListener {
-            //Toast.makeText(context, "Test: ${it.id}", Toast.LENGTH_SHORT).show()
             findNavController().navigate(MainFragmentDirections.actionShowDetail(it))
         })
-
-        /* Test RecyclerView
-        val asteroidsList = arrayListOf<Asteroid>()
-        (1 .. 100).forEach {
-            asteroidsList.add(Asteroid(it.toLong(),"Asteroid $it", "2022-01-01", 0.3 + it, 0.5 + it, 1.0 + it, 100.0, ((it % 2) == 0)))
-        }
-        asteroidsListAdapter.submitList(asteroidsList)*/
 
         viewModel.asteroids.observe(viewLifecycleOwner) { asteroidsListAdapter.submitList(it) }
         viewModel.todayImage.observe(viewLifecycleOwner) {
@@ -67,6 +59,11 @@ class MainFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.show_today_asteroids_menu -> {viewModel.filterAsteroids(MainViewModel.AsteroidFilters.TODAY_ASTEROIDS)}
+            R.id.show_week_asteroids_menu -> {viewModel.filterAsteroids(MainViewModel.AsteroidFilters.WEEK_ASTEROIDS)}
+            else -> viewModel.filterAsteroids(MainViewModel.AsteroidFilters.SAVED_ASTEROIDS)
+        }
         return true
     }
 }
