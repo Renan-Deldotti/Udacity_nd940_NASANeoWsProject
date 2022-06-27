@@ -17,12 +17,10 @@ import com.udacity.asteroidradar.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
 
-    /*private val viewModel: MainViewModel by lazy {
-        ViewModelProvider(this).get(MainViewModel::class.java)
-    }*/
     private val viewModel: MainViewModel by activityViewModels {
         MainViewModelFactory(requireActivity().application)
     }
+
     private lateinit var asteroidsListAdapter : AsteroidsListAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

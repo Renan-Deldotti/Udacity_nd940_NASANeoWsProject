@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.PictureOfDay
+import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.database.AsteroidDatabase
 import com.udacity.asteroidradar.database.AsteroidRepository
 import kotlinx.coroutines.launch
@@ -24,8 +25,7 @@ class MainViewModel(application: Application) : ViewModel() {
                 repository.fetchAsteroidFromAPI()
                 repository.fetchTodayPictureFromAPI()
             } catch (e: Exception) {
-                Log.e("MainViewModel", "Exception: ${e.message}")
-                Toast.makeText(application.applicationContext, "NW ISSUE", Toast.LENGTH_SHORT).show()
+                Toast.makeText(application.applicationContext, R.string.no_internet_connection_toast, Toast.LENGTH_SHORT).show()
             }
         }
     }
