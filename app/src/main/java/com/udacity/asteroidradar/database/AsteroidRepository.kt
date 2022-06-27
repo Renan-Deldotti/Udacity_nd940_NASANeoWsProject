@@ -1,6 +1,5 @@
 package com.udacity.asteroidradar.database
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.Constants
@@ -42,7 +41,6 @@ class AsteroidRepository(private val database: AsteroidDatabase) {
     suspend fun fetchTodayPictureFromAPI() {
         withContext(Dispatchers.IO) {
             val todayPicture = NasaAPI().getAPI().getTodayImage()
-            // Log.d("AsteroidRepository", "fetchTodayPictureFromAPI: is today picture a image: ${Constants.IMAGE_MEDIA_TYPE == todayPicture.mediaType}")
             database.pictureOfDayDao.insert(todayPicture)
         }
     }
